@@ -1,115 +1,10 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #fff;
-}
-
-main {
-  margin: 0;
-  padding: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.leaderboard-container {
-  display: flex;
-  justify-content: center;
-  background-color: #fff;
-  padding: 0;
-  width: 100%;
-}
-
-.leaderboard-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.leaderboard-card {
-  background-color: white;
-  padding: 0;
-  width: 100%;
-  margin: 0 auto 8px auto;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
-
-.card-content {
-  display: grid;
-  grid-template-columns: 70px 70px 1fr 80px 100px;
-  align-items: center;
-  width: 100%;
-  min-height: 70px;
-  gap: 0;
-  flex-wrap: nowrap;
-  background: transparent;
-}
-
-.position-box {
-  font-weight: bold;
-  font-size: 18px;
-  color: #444;
-  width: 70px;
-  text-align: center;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.leaderboard-img {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  object-fit: cover;
-  flex-shrink: 0;
-  display: block;
-  margin: 0 auto;
-}
-
-.text-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  text-align: left;
-  padding-left: 8px;
-}
-
-.name {
-  font-weight: bold;
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #222;
-}
-
-.stats-row {
-  display: flex;
-  gap: 16px;
-  font-size: 15px;
-  white-space: nowrap;
-  align-items: center;
-}
-
-.score {
-  font-weight: bold;
-  font-size: 18px;
-  min-width: 40px;
-  text-align: right;
-}
-
 .thru {
   color: #555;
   font-size: 15px;
   min-width: 80px;
   text-align: left;
+  flex-shrink: 0;
+  flex-grow: 2; /* Crece proporcionalmente más que score */
 }
 
 .score.negative { color: #b30000; }
@@ -164,7 +59,7 @@ main {
   .stats-row {
     justify-content: center;
   }
-} */
+}
 body {
   margin: 0;
   padding: 0;
@@ -238,7 +133,7 @@ main {
   flex-wrap: nowrap;
   width: 100%;
   max-width: 400px;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
   padding: 0;
   position: relative;
@@ -293,18 +188,22 @@ main {
     min-width: 60px;
     max-width: 80px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .score {
     font-size: 12px;
     min-width: 10px;
     text-align: center;
+    flex-grow: 0;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
     font-size: 10px;
     min-width: 5px;
     text-align: center;
+    flex-grow: 2;
   }
   
   .stats-row {
@@ -361,18 +260,22 @@ main {
     min-width: 70px;
     max-width: 100px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .score {
     font-size: 13px;
     min-width: 35px;
     text-align: center;
+    flex-grow: 0;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
     font-size: 11px;
     min-width: 40px;
     text-align: center;
+    flex-grow: 2;
   }
   
   .stats-row {
@@ -385,8 +288,8 @@ main {
 /* Medio (601px - 800px) - JFrame medio */
 @media (min-width: 601px) and (max-width: 800px) {
   .card-content {
-    gap: 10px;
-    max-width: 400px;
+    gap: 5px;
+    max-width: 200px;
     padding: 0;
     justify-content: center;
   }
@@ -404,6 +307,7 @@ main {
   .name {
     max-width: 110px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
@@ -469,18 +373,22 @@ main {
     min-width: 70px;
     max-width: 90px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .score {
     font-size: 13px;
     min-width: 35px;
     text-align: center;
+    flex-grow: 0;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
     font-size: 11px;
     min-width: 40px;
     text-align: center;
+    flex-grow: 2;
   }
   
   .stats-row {
@@ -545,6 +453,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-right: 24px; /* Ajusta el valor según el espacio que desees */
 }
 
 .stats-row {
@@ -568,6 +477,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 0;
+  margin-right: 24px; /* Ajusta el valor según el espacio que desees */
 }
 
 .thru-text {
@@ -582,6 +493,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 2;
 }
 
 .score.negative { color: #e74c3c; }
@@ -635,8 +547,8 @@ main {
 /* Responsive para tablet */
 @media (min-width: 769px) and (max-width: 1024px) {
   .card-content {
-    max-width: 420px;
-    gap: 12px;
+    max-width: 110px;
+    gap: 3px;
     padding: 0;
     justify-content: center;
   }
@@ -666,6 +578,7 @@ main {
     min-width: 80px;
     max-width: 110px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
@@ -701,6 +614,7 @@ main {
   .name {
     max-width: 120px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
@@ -785,17 +699,21 @@ main {
     min-width: 50px;
     max-width: 60px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .score {
     font-size: 11px;
     min-width: 25px;
+    flex-grow: 0;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .thru-text {
     font-size: 9px;
     min-width: 30px;
     text-align: center;
+    flex-grow: 2;
   }
 }
 
@@ -871,6 +789,7 @@ main {
     font-size: 16px;
     max-width: 140px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .score {
@@ -923,6 +842,7 @@ main {
     font-size: 13px;
     min-width: 80px;
     text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
   
   .stats-row {
@@ -963,4 +883,11 @@ main {
   color: #586069;
   background-color: #f6f8fa;
   border-color: #d1d5da;
+}
+
+@media (min-width: 770px) and (max-width: 1000px) {
+  .card-content {
+    gap: 8px; /* Reduce el espacio entre columnas */
+    max-width: 400px; /* Ajusta el ancho máximo para que no se separen demasiado */
+  }
 }

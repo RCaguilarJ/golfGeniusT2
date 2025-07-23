@@ -20,6 +20,16 @@ function getJson($url)
 
     return json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 }
+ //URL PROD.
+// cURL para llamada segura
+// $ch = curl_init($url);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// $response = curl_exec($ch);
+
+// if (curl_errno($ch)) {
+//   echo json_encode(['error' => curl_error($ch)]);
+//   exit;
+// }
 
 // Obtener datos desde Golf Genius
 $tournamentData = getJson($tournamentResultUrl);
