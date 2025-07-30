@@ -1,63 +1,50 @@
-.thru {
-  color: #555;
-  font-size: 15px;
-  min-width: 80px;
-  text-align: left;
-  flex-shrink: 0;
-  flex-grow: 2; /* Crece proporcionalmente más que score */
-}
-
-.score.negative { color: #b30000; }
-.score.positive { color: #006400; }
-.score.even     { color: #000; }
-
-#loader {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 64px;
-  height: 64px;
-  margin-top: -32px;
-  margin-left: -32px;
-  border: 6px solid #ccc;
-  border-top-color: #2c3e50;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  z-index: 1000;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-#snackbar {
-  visibility: hidden;
-  min-width: 280px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 12px 16px;
-  border-radius: 6px;
-  position: fixed;
-  left: 50%;
-  bottom: 30px;
-  transform: translateX(-50%);
-  z-index: 999;
-  opacity: 0;
-  transition: opacity 0.5s ease, bottom 0.5s ease;
-  font-size: 14px;
-}
-
-#snackbar.show {
-  visibility: visible;
-  opacity: 1;
-  bottom: 50px;
-}
-
-@media (max-width: 500px) {
-  .stats-row {
+@media (min-width: 500px) and (max-width: 599px) {
+  .card-content {
+    gap: 8px;
+    padding: 8px 16px;
+    justify-content: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .position-box {
+    min-width: 40px;
+    font-size: 1.1em;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .leaderboard-img {
+    width: 36px;
+    height: 36px;
+    margin: 0 8px;
+  }
+  .name {
+    font-size: 1.05em;
+    min-width: 80px;
+    max-width: 120px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  .score {
+    font-size: 1.05em;
+    min-width: 40px;
+    max-width: 50px;
+    margin: 0 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
     justify-content: center;
+  }
+  .thru, .thru-text {
+    font-size: 1em;
+    min-width: 60px;
+    max-width: 70px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
   }
 }
 body {
@@ -95,7 +82,7 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .leaderboard-list {
@@ -111,13 +98,13 @@ main {
 
 .leaderboard-card {
   background-color: white;
-  padding: 8px 15px;
+  padding: 8px 10px;
   width: 100%;
   margin: 0 0 3px 0;
   border-bottom: 1px solid #f0f0f0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   gap: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border-radius: 6px;
@@ -128,205 +115,551 @@ main {
 
 .card-content {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
-  width: 100%;
-  max-width: 400px;
   justify-content: space-between;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-  min-width: 0;
+  gap: 0;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  width: 100%;
 }
 
-/* Media queries específicas para JFrame y contenedores pequeños */
-
-/* Muy pequeño (280px - 400px) - JFrame mínimo */
-@media (max-width: 400px) {
-  .leaderboard-card {
-    padding: 6px 8px;
-    gap: 6px;
-    min-height: 50px;
-  }
-  
-  .card-content {
-    gap: 6px;
-    max-width: 320px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .position-box {
-    font-size: 14px;
-    width: 25px;
-    flex-shrink: 0;
-  }
-  
-  .leaderboard-img {
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .player-info {
-    gap: 3px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .name {
-    font-size: 12px;
-    min-width: 60px;
-    max-width: 80px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .score {
-    font-size: 12px;
-    min-width: 10px;
-    text-align: center;
-    flex-grow: 0;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .thru-text {
-    font-size: 10px;
-    min-width: 5px;
-    text-align: center;
-    flex-grow: 2;
-  }
-  
-  .stats-row {
-    gap: 1px;
-    font-size: 12px;
-    justify-content: center;
-    min-width: 80px;
-  }
+/* Orden y estilos para los elementos principales */
+.position-box {
+  order: 1;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 0;
+  min-width: 60px;
 }
 
-/* Pequeño (401px - 600px) - JFrame pequeño */
-@media (min-width: 401px) and (max-width: 600px) {
-  .leaderboard-card {
-    padding: 7px 10px;
-    gap: 8px;
-    min-height: 55px;
-  }
-  
+.leaderboard-img, .avatar-initials {
+  order: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 12px;
+}
+
+
+.score, .score.negative, .score.positive, .score.even {
+  order: 4;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  color: #e74c3c; /* negative color by default */
+  display: block;
+}
+
+.thru, .thru-text {
+  order: 5;
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  display: block;
+}
+
+
+
+/* Asegúrate de que solo haya una definición para .name, .score, .thru-text fuera de media queries */
+.name {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 90px;
+  max-width: 160px;
+  order: 3;
+  display: block;
+}
+
+.score, .score.negative, .score.positive, .score.even {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  order: 4;
+  display: block;
+}
+
+.thru, .thru-text {
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  order: 5;
+  display: block;
+}
+@media (min-width: 600px) and (max-width: 699px) {
   .card-content {
     gap: 8px;
-    max-width: 380px;
-    padding: 0;
-    justify-content: center;
+    padding: 8px 16px;
+    justify-content: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
   }
-  
   .position-box {
-    font-size: 15px;
-    width: 28px;
-    flex-shrink: 0;
-  }
-  
-  .leaderboard-img {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .name {
-    font-size: 13px;
     min-width: 70px;
-    max-width: 100px;
+    font-size: 1.1em;
     text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+    margin-left: 0;
+    margin-right: 0;
   }
-  
-  .score {
-    font-size: 13px;
-    min-width: 35px;
-    text-align: center;
-    flex-grow: 0;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+  .leaderboard-img {
+    width: 36px;
+    height: 36px;
+    margin: 0 8px;
   }
-  
-  .thru-text {
-    font-size: 11px;
-    min-width: 40px;
-    text-align: center;
-    flex-grow: 2;
-  }
-  
-  .stats-row {
-    gap: 1px;
-    justify-content: center;
-    min-width: 90px;
-  }
-}
-
-/* Medio (601px - 800px) - JFrame medio */
-@media (min-width: 601px) and (max-width: 800px) {
-  .card-content {
-    gap: 5px;
-    max-width: 200px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-  }
-  
   .name {
-    max-width: 110px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .thru-text {
-    text-align: center;
-  }
-  
-  .stats-row {
-    gap: 1px;
-    justify-content: center;
+    font-size: 1.05em;
     min-width: 100px;
+    max-width: 140px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  .score {
+    font-size: 1.05em;
+    min-width: 60px;
+    max-width: 70px;
+    margin: 0 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thru, .thru-text {
+    font-size: 1em;
+    min-width: 80px;
+    max-width: 90px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  min-width: 280px;
+  overflow-x: auto;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  min-width: 280px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f8f9fa;
+  padding: 0;
+  width: 100%;
+  min-width: 280px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.leaderboard-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.leaderboard-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 5px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.leaderboard-card {
+  background-color: white;
+  padding: 8px 10px;
+  width: 100%;
+  margin: 0 0 3px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  position: relative;
+  min-height: 60px;
+  flex-shrink: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  width: 100%;
+}
+
+/* Orden y estilos para los elementos principales */
+.position-box {
+  order: 1;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 0;
+  min-width: 60px;
+}
+
+.leaderboard-img, .avatar-initials {
+  order: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 12px;
+}
+
+
+.score, .score.negative, .score.positive, .score.even {
+  order: 4;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  color: #e74c3c; /* negative color by default */
+  display: block;
+}
+
+.thru, .thru-text {
+  order: 5;
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  display: block;
+}
+
+
+
+/* Asegúrate de que solo haya una definición para .name, .score, .thru-text fuera de media queries */
+.name {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 90px;
+  max-width: 160px;
+  order: 3;
+  display: block;
+}
+
+.score, .score.negative, .score.positive, .score.even {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  order: 4;
+  display: block;
+}
+
+.thru, .thru-text {
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  order: 5;
+  display: block;
+}
+@media (min-width: 700px) and (max-width: 800px) {
+  .card-content {
+    gap: 8px;
+    padding: 24px 48px;
+    justify-content: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .position-box {
+    min-width: 140px;
+    font-size: 1.1em;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .leaderboard-img {
+    width: 36px;
+    height: 36px;
+    margin: 0 8px;
+  }
+  .name {
+    font-size: 1.05em;
+    min-width: 120px;
+    max-width: 160px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  .score {
+    font-size: 1.05em;
+    min-width: 80px;
+    max-width: 90px;
+    margin: 0 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thru, .thru-text {
+    font-size: 1em;
+    min-width: 100px;
+    max-width: 120px;
+    margin: 0 8px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  min-width: 280px;
+  overflow-x: auto;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  min-width: 280px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f8f9fa;
+  padding: 0;
+  width: 100%;
+  min-width: 280px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.leaderboard-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.leaderboard-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 5px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.leaderboard-card {
+  background-color: white;
+  padding: 8px 10px;
+  width: 100%;
+  margin: 0 0 3px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  position: relative;
+  min-height: 60px;
+  flex-shrink: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  width: 100%;
+}
+
+/* Orden y estilos para los elementos principales */
+.position-box {
+  order: 1;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 0;
+  min-width: 60px;
+}
+
+.leaderboard-img, .avatar-initials {
+  order: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 12px;
+}
+
+
+.score, .score.negative, .score.positive, .score.even {
+  order: 4;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  color: #e74c3c; /* negative color by default */
+  display: block;
+}
+
+.thru, .thru-text {
+  order: 5;
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  display: block;
+}
+
+
+
+/* Asegúrate de que solo haya una definición para .name, .score, .thru-text fuera de media queries */
+.name {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 90px;
+  max-width: 160px;
+  order: 3;
+  display: block;
+}
+
+.score, .score.negative, .score.positive, .score.even {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  min-width: 60px;
+  order: 4;
+  display: block;
+}
+
+.thru, .thru-text {
+  color: #888;
+  font-size: 0.95em;
+  text-align: center;
+  min-width: 80px;
+  order: 5;
+  display: block;
+}
+
+
+
+/* Responsive para móviles */
+@media (max-width: 700px) {
+  .card-content {
+    gap: 0;
+    padding: 8px 8px;
+    justify-content: space-between;
+  }
+  .leaderboard-img, .avatar-initials {
+    width: 28px;
+    height: 28px;
+    margin: 0 4px;
+    order: 2;
+  }
+  .name {
+    order: 3;
+    font-size: 0.95em;
+    min-width: 60px;
+    max-width: 100px;
+  }
+  .score, .score.negative, .score.positive, .score.even {
+    order: 4;
+    font-size: 0.95em;
+    min-width: 40px;
+  }
+  .thru, .thru-text {
+    order: 5;
+    font-size: 0.95em;
+    min-width: 40px;
+  }
+  .position-box {
+    order: 1;
+    min-width: 36px;
+    font-size: 1em;
+  }
+  .score {
+    order: 4;
+  }
+  .thru-text, .thru {
+    order: 5;
   }
 }
 
-/* Responsive para mobile */
-@media (max-width: 768px) {
-  .leaderboard-list {
+@media (max-width: 800px) {
+  .-list {
     padding: 3px;
   }
-  
+
   .leaderboard-card {
     width: 100%;
     padding: 8px 10px;
@@ -334,63 +667,58 @@ main {
     margin: 0 0 2px 0;
     min-height: 55px;
   }
-  
+
   .card-content {
     gap: 8px;
     max-width: 380px;
     padding: 0;
     justify-content: center;
   }
-  
+
   .position-box {
+    order: 1;
     font-size: 14px;
-    width: 25px;
     flex-shrink: 0;
+    margin-left: 15px;
   }
-  
+
   .leaderboard-img {
+    order: 2;
     width: 40px;
     height: 40px;
     flex-shrink: 0;
   }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-    flex: 1;
-    min-width: 0;
-  }
-  
+
   .name {
+    order: 3;
     font-size: 13px;
     min-width: 70px;
     max-width: 90px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+    text-align: left;
+    margin-right: 8px;
+    margin-left: 0;
   }
-  
+
   .score {
+    order: 4;
     font-size: 13px;
     min-width: 35px;
-    text-align: center;
+    text-align: left;
     flex-grow: 0;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+    margin-right: 8px;
+    margin-left: 0;
   }
-  
-  .thru-text {
+
+  .thru-text, .thru {
+    order: 5;
     font-size: 11px;
     min-width: 40px;
-    text-align: center;
+    text-align: left;
     flex-grow: 2;
+    margin-right: 0;
+    margin-left: 0;
   }
-  
+
   .stats-row {
     gap: 1px;
     justify-content: center;
@@ -402,10 +730,12 @@ main {
   font-weight: bold;
   font-size: 16px;
   color: #666;
-  width: 30px;
-  text-align: center;
+
+  text-align: right;
   flex-shrink: 0;
   order: 1;
+  margin-left: 15px;
+
 }
 
 .leaderboard-img {
@@ -416,6 +746,8 @@ main {
   border: 2px solid #ddd;
   flex-shrink: 0;
   order: 2;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .text-block {
@@ -453,7 +785,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .stats-row {
@@ -478,7 +811,8 @@ main {
   align-items: center;
   justify-content: center;
   flex-grow: 0;
-  margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+  margin-left: 10px;
+  margin-right: 24px;
 }
 
 .thru-text {
@@ -494,6 +828,7 @@ main {
   align-items: center;
   justify-content: center;
   flex-grow: 2;
+  margin-right: 15px;
 }
 
 .score.negative { color: #e74c3c; }
@@ -544,126 +879,26 @@ main {
   bottom: 50px;
 }
 
-/* Responsive para tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .card-content {
-    max-width: 110px;
-    gap: 3px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .position-box {
-    font-size: 16px;
-    width: 30px;
-  }
-  
-  .leaderboard-img {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-  }
-  
-  .name {
-    font-size: 14px;
-    min-width: 80px;
-    max-width: 110px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .thru-text {
-    text-align: center;
-  }
-  
-  .stats-row {
-    gap: 1px;
-    justify-content: center;
-    min-width: 100px;
-  }
-}
 
-/* Responsive para desktop grande */
-@media (min-width: 1025px) {
-  .card-content {
-    max-width: 420px;
-    gap: 12px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-  }
-  
-  .name {
-    max-width: 120px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .thru-text {
-    text-align: center;
-  }
-  
-  .stats-row {
-    gap: 1px;
-    justify-content: center;
-    min-width: 110px;
-  }
-}
 
-/* Media query específica para altura muy pequeña */
 @media (max-height: 400px) {
   .leaderboard-container {
     height: 100vh;
   }
-  
+
   .leaderboard-card {
     padding: 5px 10px;
     min-height: 45px;
     margin: 0 0 1px 0;
   }
-  
+
   .card-content {
-    justify-content: center;
+    /* justify-content: center; */
     padding: 0 15px;
   }
 }
 
-/* Media query para pantallas muy anchas pero cortas */
-@media (min-width: 800px) and (max-height: 500px) {
-  .leaderboard-container {
-    height: 100vh;
-  }
-  
-  .leaderboard-card {
-    padding: 6px 15px;
-    min-height: 50px;
-  }
-  
-  .card-content {
-    justify-content: center;
-    padding: 0 20px;
-  }
-}
 
-/* Media queries adicionales para mejor responsividad */
 
 /* Extra pequeño - Smartwatch y dispositivos muy pequeños */
 @media (max-width: 280px) {
@@ -673,86 +908,31 @@ main {
     justify-content: center;
     max-width: 250px;
   }
-  
+
   .position-box {
     font-size: 12px;
-    width: 20px;
+
+    margin-left: 15px;
   }
-  
+
   .leaderboard-img {
     width: 30px;
     height: 30px;
   }
-  
+
   .text-block {
     gap: 2px;
     justify-content: center;
   }
-  
+
   .player-info {
     gap: 3px;
     justify-content: center;
   }
-  
+
   .name {
     font-size: 11px;
     min-width: 50px;
-    max-width: 60px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .score {
-    font-size: 11px;
-    min-width: 25px;
-    flex-grow: 0;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .thru-text {
-    font-size: 9px;
-    min-width: 30px;
-    text-align: center;
-    flex-grow: 2;
-  }
-}
-
-/* Rango intermedio 501px - 600px */
-@media (min-width: 501px) and (max-width: 600px) {
-  .card-content {
-    gap: 10px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-  }
-}
-
-/* Rango intermedio 801px - 1024px */
-@media (min-width: 801px) and (max-width: 1024px) {
-  .card-content {
-    gap: 12px;
-    padding: 0;
-    justify-content: center;
-    max-width: 420px;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
   }
 }
 
@@ -764,99 +944,48 @@ main {
     padding: 0;
     justify-content: center;
   }
-  
+
   .text-block {
     gap: 2px;
     justify-content: center;
   }
-  
+
   .player-info {
     gap: 4px;
     justify-content: center;
   }
-  
+
   .position-box {
     font-size: 18px;
-    width: 35px;
+    margin-left: 15px;
   }
-  
+
   .leaderboard-img {
     width: 50px;
     height: 50px;
   }
-  
+
   .name {
     font-size: 16px;
     max-width: 140px;
     text-align: center;
     margin-right: 24px; /* Ajusta el valor según el espacio que desees */
   }
-  
+
   .score {
     font-size: 16px;
   }
-  
+
   .thru-text {
     font-size: 14px;
     text-align: center;
+    margin-right: 15px;
   }
 }
 
-@media (max-width: 500px) {
+@media (min-width: 700px) {
   .card-content {
-    gap: 8px;
-    padding: 0;
-    justify-content: center;
-  }
-  
-  .stats-row {
-    justify-content: center;
-    gap: 1px;
-  }
-  
-  .position-box {
-    font-size: 14px;
-    width: 25px;
-    flex-shrink: 0;
-  }
-  
-  .text-block {
-    gap: 2px;
-    justify-content: center;
-    flex: 1;
-  }
-  
-  .player-info {
-    gap: 4px;
-    justify-content: center;
-    flex: 0 0 auto;
-  }
-  
-  .leaderboard-img {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-  }
-  
-  .name {
-    font-size: 13px;
-    min-width: 80px;
-    text-align: center;
-    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
-  }
-  
-  .stats-row {
-    font-size: 13px;
-  }
-  
-  .score {
-    text-align: center;
-  }
-  
-  .thru-text {
-    text-align: center;
-    font-size: 11px;
-    min-width: 35px;
+    gap: clamp(16px, 4vw, 48px);
   }
 }
 
@@ -885,9 +1014,377 @@ main {
   border-color: #d1d5da;
 }
 
-@media (min-width: 770px) and (max-width: 1000px) {
+
+
+
+@media (max-width: 800px) {
+  .-list {
+    padding: 3px;
+  }
+
+  .leaderboard-card {
+    width: 100%;
+    padding: 8px 10px;
+    gap: 8px;
+    margin: 0 0 2px 0;
+    min-height: 55px;
+  }
+
   .card-content {
-    gap: 8px; /* Reduce el espacio entre columnas */
-    max-width: 400px; /* Ajusta el ancho máximo para que no se separen demasiado */
+    gap: 8px;
+    max-width: 380px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .position-box {
+    order: 1;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-left: 15px;
+  }
+
+  .leaderboard-img {
+    order: 2;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .name {
+    order: 3;
+    font-size: 13px;
+    min-width: 70px;
+    max-width: 90px;
+    text-align: left;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+
+  .score {
+    order: 4;
+    font-size: 13px;
+    min-width: 35px;
+    text-align: left;
+    flex-grow: 0;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+
+  .thru-text, .thru {
+    order: 5;
+    font-size: 11px;
+    min-width: 40px;
+    text-align: left;
+    flex-grow: 2;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .stats-row {
+    gap: 1px;
+    justify-content: center;
+    min-width: 90px;
   }
 }
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 14px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 45px;
+  max-width: 45px;
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  margin-left: 10px;
+  margin-right: 24px;
+}
+
+.thru-text {
+  color: #999;
+  font-size: 12px;
+  font-weight: normal;
+  min-width: 50px;
+  max-width: 50px;
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 2;
+  margin-right: 15px;
+}
+
+.score.negative { color: #e74c3c; }
+.score.positive { color: #27ae60; }
+.score.even     { color: #333; }
+
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  border: 6px solid #ccc;
+  border-top-color: #2c3e50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1000;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 280px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+  font-size: 14px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+
+
+@media (max-height: 400px) {
+  .leaderboard-container {
+    height: 100vh;
+  }
+
+  .leaderboard-card {
+    padding: 5px 10px;
+    min-height: 45px;
+    margin: 0 0 1px 0;
+  }
+
+  .card-content {
+    /* justify-content: center; */
+    padding: 0 15px;
+  }
+}
+
+
+
+/* Extra pequeño - Smartwatch y dispositivos muy pequeños */
+@media (max-width: 280px) {
+  .card-content {
+    gap: 6px;
+    padding: 0;
+    justify-content: center;
+    max-width: 250px;
+  }
+
+  .position-box {
+    font-size: 12px;
+
+    margin-left: 15px;
+  }
+
+  .leaderboard-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .text-block {
+    gap: 2px;
+    justify-content: center;
+  }
+
+  .player-info {
+    gap: 3px;
+    justify-content: center;
+  }
+
+  .name {
+    font-size: 11px;
+    min-width: 50px;
+  }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1440px) {
+  .card-content {
+    max-width: 450px;
+    gap: 15px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .text-block {
+    gap: 2px;
+    justify-content: center;
+  }
+
+  .player-info {
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .position-box {
+    font-size: 18px;
+    margin-left: 15px;
+  }
+
+  .leaderboard-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .name {
+    font-size: 16px;
+    max-width: 140px;
+    text-align: center;
+    margin-right: 24px; /* Ajusta el valor según el espacio que desees */
+  }
+
+  .score {
+    font-size: 16px;
+  }
+
+  .thru-text {
+    font-size: 14px;
+    text-align: center;
+    margin-right: 15px;
+  }
+}
+
+@media (min-width: 700px) {
+  .card-content {
+    gap: clamp(16px, 4vw, 48px);
+  }
+}
+
+/* Estilos para mensajes de error y sin datos */
+.error-message,
+.no-data-message {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 18px;
+  color: #666;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 20px;
+  border: 1px solid #ddd;
+}
+
+.error-message {
+  color: #d73a49;
+  background-color: #ffeaea;
+  border-color: #f97583;
+}
+
+.no-data-message {
+  color: #586069;
+  background-color: #f6f8fa;
+  border-color: #d1d5da;
+}
+
+
+
+
+@media (max-width: 800px) {
+  .-list {
+    padding: 3px;
+  }
+
+  .leaderboard-card {
+    width: 100%;
+    padding: 8px 10px;
+    gap: 8px;
+    margin: 0 0 2px 0;
+    min-height: 55px;
+  }
+
+  .card-content {
+    gap: 8px;
+    max-width: 380px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .position-box {
+    order: 1;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-left: 15px;
+  }
+
+  .leaderboard-img {
+    order: 2;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .name {
+    order: 3;
+    font-size: 13px;
+    min-width: 70px;
+    max-width: 90px;
+    text-align: left;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+
+  .score {
+    order: 4;
+    font-size: 13px;
+    min-width: 35px;
+    text-align: left;
+    flex-grow: 0;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+
+  .thru-text, .thru {
+    order: 5;
+    font-size: 11px;
+    min-width: 40px;
+    text-align: left;
+    flex-grow: 2;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .stats-row {
+    gap: 1px;
+    justify-content: center;
+    min-width: 90px;
+  }
+}
+
+

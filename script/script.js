@@ -68,13 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-content">
               <div class="position-box">${player.position}</div>
               <img src="${photoURL}" class="leaderboard-img" alt="Foto de ${displayName}">
-              <div class="text-block">
-                <div class="name">${displayName}</div>
-                <div class="stats-row">
-                  <span class="score ${scoreClass}">${player.score}</span>
-                  <span class="thru">Thru ${thru}</span>
-                </div>
-              </div>
+              <div class="name">${displayName}</div>
+              <span class="score ${scoreClass}">${player.score}</span>
+              <span class="thru">Thru ${thru}</span>
             </div>
           `;
 
