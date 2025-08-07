@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = Date.now();
     showLoader();
 
+    const apiUrl = `api/api_proxy.php`;
+
     const previousScores = {};
     document.querySelectorAll('.leaderboard-card').forEach(card => {
       const name = card.querySelector('.name')?.textContent?.trim();
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (name && score) previousScores[name] = score;
     });
 
-    fetch('api/api_proxy.php')
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         const results = data.results;
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           hideLoader();
           const now = new Date();
-          showSnackbar(`Leaderboard actualizado - ${formatHour(now)}`);
+          showSnackbar(`Leaderboard actualizada - ${formatHour(now)}`);
         }, remaining);
       })
       .catch(error => {
@@ -100,5 +102,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   renderLeaderboard();
-  setInterval(renderLeaderboard, 60000);
+  setInterval(renderLeaderboard, 300000); // 5 minutos
 });

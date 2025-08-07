@@ -2,11 +2,11 @@
 // Configura tu API KEY
 $apiKey = 'MGMlbTG_APORWozDtgXHdQ';
 
-// URLs a consumir
+// URLs a consumir (ronda 3 fija)
 $tournamentResultUrl = "https://www.golfgenius.com/api_v2/$apiKey/events/10733818833262361649/rounds/10733997716737637783/tournaments/11025765214984354975";
 $masterRosterUrl = "https://www.golfgenius.com/api_v2/$apiKey/master_roster?photo=true";
 
-// Función para obtener datos desde una URL
+// Función para obtener datos desde una URL local
 function getJson($url)
 {
     $opts = [
@@ -20,22 +20,47 @@ function getJson($url)
 
     return json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 }
- //URL PROD.
-// cURL para llamada segura
-// $ch = curl_init($url);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// $response = curl_exec($ch);
 
-// if (curl_errno($ch)) {
-//   echo json_encode(['error' => curl_error($ch)]);
-//   exit;
+    // Obtener datos desde Golf Genius
+    $tournamentData = getJson($tournamentResultUrl);
+    $rosterData = getJson($masterRosterUrl);
+
+    // Verificar que se obtuvieron datos válidos
+    if (!$tournamentData || !$rosterData) {
+        http_response_code(500);
+        echo json_encode([
+            'error' => 'Error al obtener datos de Golf Genius'
+        ]);
+        exit;
+    }
+
+
+//función para producción
+// function getJson($url)
+// {
+//     $ch = curl_init($url);
+
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+
+//     $response = curl_exec($ch);
+
+//     if (curl_errno($ch)) {
+//         error_log('cURL error: ' . curl_error($ch));
+//         curl_close($ch);
+//         return null;
+//     }
+
+//     curl_close($ch);
+//     return json_decode($response, true, 512, JSON_BIGINT_AS_STRING);
 // }
+// Indexar fotos por member_card_id (como string)
 
-// Obtener datos desde Golf Genius
 $tournamentData = getJson($tournamentResultUrl);
 $rosterData = getJson($masterRosterUrl);
 
-// Indexar fotos por member_card_id (como string)
+
+    
 $photoMap = [];
 foreach ($rosterData as $entry) {
     $member = $entry['member'];
@@ -66,3 +91,4 @@ echo json_encode([
     'results' => $processedResults,
     'roster' => $photoMap
 ]);
+?>
